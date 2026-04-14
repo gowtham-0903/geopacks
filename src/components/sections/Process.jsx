@@ -1,96 +1,208 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 import SectionTitle from '../ui/SectionTitle';
-import { Search, Database, Target, CheckSquare } from 'lucide-react';
-import processImage from '../../assets/process-recycling.jpg';
+import RouteLink from '../ui/RouteLink';
+
+const bottleRows = [
+    { sn: 1, type: 'Round Bottle (Juice)', capacity: '200 ml', weight: '11.5 g', neck: '28 mm' },
+    { sn: 2, type: 'Round Bottle (Juice)', capacity: '500 ml', weight: '22.5 g', neck: '28 mm' },
+    { sn: 3, type: 'Round Bottle (Juice)', capacity: '600 ml', weight: '22.5 g', neck: '28 mm' },
+    { sn: 4, type: 'Round Bottle (Juice)', capacity: '1000 ml', weight: '35 g', neck: '28 mm' },
+    { sn: 5, type: 'Round Bottle (Water)', capacity: '300 ml', weight: '10 g', neck: '28 mm' },
+    { sn: 6, type: 'Round Bottle (Water)', capacity: '500 ml', weight: '13 g', neck: '28 mm' },
+    { sn: 7, type: 'Round Bottle (Water)', capacity: '1000 ml', weight: '19.5 g', neck: '-' },
+    { sn: 8, type: 'Round Bottle (Water)', capacity: '2000 ml', weight: '34 g', neck: '-' },
+    { sn: 9, type: 'Round Bottle (Oil)', capacity: '250 ml', weight: '22.5 g', neck: '-' },
+    { sn: 10, type: 'Round Bottle (Oil)', capacity: '500 ml', weight: '33 g', neck: '-' },
+    { sn: 11, type: 'Round Bottle (Oil)', capacity: '1000 ml', weight: '48 g', neck: '-' },
+    { sn: 12, type: 'Round Bottle (Oil)', capacity: '500 ml', weight: '19.5 g', neck: '-' },
+    { sn: 13, type: 'Round Bottle (Oil)', capacity: '1000 ml', weight: '34 g', neck: '-' },
+    { sn: 14, type: 'Round Bottle', capacity: '200 ml', weight: '15 g', neck: '-' },
+    { sn: 15, type: 'Round Bottle', capacity: '250 ml', weight: '13 g', neck: '-' },
+    { sn: 16, type: 'Liquor Bottle', capacity: '500 ml', weight: '19 g', neck: '25 mm' },
+];
+
+const roundJarRows = [
+    { sn: 1, type: 'Round Jar', capacity: '100 ml', weight: '11 g', neck: '38 mm' },
+    { sn: 2, type: 'Round Jar', capacity: '250 ml', weight: '21 g', neck: '56 mm' },
+];
+
+const squareJarRows = [
+    { sn: 1, type: 'Square Jar', capacity: '250 ml', weight: '21 g', neck: '56 mm' },
+    { sn: 2, type: 'Square Jar', capacity: '1000 ml', weight: '40 g', neck: '83 mm' },
+];
+
+const waterPreforms = [
+    { itemNo: '01', name: '13 GMS ALASKA', neckDia: '28' },
+    { itemNo: '02', name: '19.60 GMS ALASKA', neckDia: '28' },
+    { itemNo: '03', name: '34 GMS ALASKA', neckDia: '28' },
+    { itemNo: '04', name: '38 GMS ALASKA', neckDia: '28' },
+    { itemNo: '05', name: '110 GMS ALASKA', neckDia: '46' },
+];
+
+const juiceAndCsdPreforms = [
+    { itemNo: '06', name: '11.4 GMS SHORT NECK', neckDia: '28' },
+    { itemNo: '07', name: '11.50 GMS SHORT NECK', neckDia: '28' },
+    { itemNo: '08', name: '11.70 GMS SHORT NECK', neckDia: '28' },
+    { itemNo: '09', name: '23 GMS LONG NECK', neckDia: '28' },
+    { itemNo: '10', name: '25 GMS LONG NECK', neckDia: '28' },
+    { itemNo: '11', name: '35.60 GMS SHORT NECK', neckDia: '28' },
+];
+
+const roppPreforms = [
+    { itemNo: '12', name: '14 GMS', neckDia: '25' },
+    { itemNo: '13', name: '19 GMS', neckDia: '25' },
+    { itemNo: '14', name: '22 GMS', neckDia: '28' },
+    { itemNo: '15', name: '24 GMS', neckDia: '28' },
+    { itemNo: '16', name: '31.50 GMS', neckDia: '28' },
+    { itemNo: '17', name: '33 GMS', neckDia: '28' },
+    { itemNo: '18', name: '37 GMS', neckDia: '30' },
+    { itemNo: '19', name: '40 GMS', neckDia: '30' },
+    { itemNo: '20', name: '43 GMS', neckDia: '30' },
+    { itemNo: '21', name: '48 GMS', neckDia: '30' },
+    { itemNo: '22', name: '56 GMS', neckDia: '30' },
+];
+
+const jarPreforms = [
+    { itemNo: '23', name: '11 GMS', neckDia: '38' },
+    { itemNo: '24', name: '21 GMS', neckDia: '56' },
+    { itemNo: '25', name: '24 GMS', neckDia: '56' },
+    { itemNo: '26', name: '40 GMS', neckDia: '83' },
+    { itemNo: '27', name: '66 GMS', neckDia: '100' },
+];
+
+const ProductTable = ({ rows }) => (
+    <div className="overflow-x-auto">
+        <table className="w-full min-w-[740px] text-left">
+            <thead>
+                <tr className="bg-primary text-white">
+                    <th className="px-4 py-3 rounded-l-lg">S.No</th>
+                    <th className="px-4 py-3">Product Type</th>
+                    <th className="px-4 py-3">Capacity (ML)</th>
+                    <th className="px-4 py-3">Weight (g)</th>
+                    <th className="px-4 py-3 rounded-r-lg">Neck (mm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {rows.map((row) => (
+                    <tr key={`${row.type}-${row.sn}`} className="border-b border-gray-200 last:border-none">
+                        <td className="px-4 py-3 font-medium">{row.sn}</td>
+                        <td className="px-4 py-3">{row.type}</td>
+                        <td className="px-4 py-3">{row.capacity}</td>
+                        <td className="px-4 py-3">{row.weight}</td>
+                        <td className="px-4 py-3">{row.neck}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
+);
+
+const PreformTable = ({ rows, title, isLast = false }) => (
+    <div className={`premium-card bg-gray-50 border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm ${isLast ? 'mb-10' : 'mb-8'}`}>
+        <h3 className="text-2xl font-bold mb-4">{title}</h3>
+        <div className="overflow-x-auto">
+            <table className="w-full min-w-[640px] text-left">
+                <thead>
+                    <tr className="bg-primary text-white">
+                        <th className="px-4 py-3 rounded-l-lg">Item No.</th>
+                        <th className="px-4 py-3">Preform Type</th>
+                        <th className="px-4 py-3 rounded-r-lg">Neck Dia (mm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rows.map((row) => (
+                        <tr key={`${row.itemNo}-${row.name}`} className="border-b border-gray-200 last:border-none">
+                            <td className="px-4 py-3 font-medium">{row.itemNo}</td>
+                            <td className="px-4 py-3">{row.name}</td>
+                            <td className="px-4 py-3">{row.neckDia}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    </div>
+);
 
 const Process = () => {
-    const sectionRef = useRef(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from(".process-step", {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2
-            });
-        }, sectionRef);
-        return () => ctx.revert();
-    }, []);
-
-    const steps = [
-        {
-            icon: Search,
-            title: 'Our Research',
-            desc: 'We research market trends and material science to best fit your needs.'
-        },
-        {
-            icon: Database,
-            title: 'Data Collection',
-            desc: 'Gathering requirements and technical specifications for perfect molding.'
-        },
-        {
-            icon: Target,
-            title: 'Targeting',
-            desc: 'Precision engineering to target the exact dimensions and quality.'
-        },
-        {
-            icon: CheckSquare,
-            title: 'Solve Problem',
-            desc: 'Delivering the final product that solves your packaging challenges.'
-        },
-    ];
+    const [activeCategory, setActiveCategory] = useState('bottles');
 
     return (
-        <section ref={sectionRef} id="process" className="py-20 bg-slate-900 text-white relative overflow-hidden">
-            {/* Background patterns */}
-            <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-                <div className="absolute right-0 top-0 w-96 h-96 bg-primary rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-                <div className="absolute left-0 bottom-0 w-64 h-64 bg-primary rounded-full blur-3xl -translate-x-1/2 translate-y-1/2"></div>
-            </div>
-
-            <div className="container mx-auto px-4 md:px-8 relative z-10">
-                <div className="flex flex-col lg:flex-row gap-16">
-
-                    <div className="lg:w-1/3">
-                        <SectionTitle
-                            subtitle="Our Work Flow"
-                            title="We Are Truly Able To Help Our Clients Live Happier"
-                            className="text-white"
-                        />
-                        <p className="text-gray-400 mb-8 leading-relaxed">
-                            Backed by 10+ years of hands-on manufacturing experience, our process is built for quality and repeatability. We follow a strict workflow to maintain the highest standards in every batch we produce.
-                        </p>
-
-                        <div className="relative h-[300px] w-full rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-                            <img
-                                src={processImage}
-                                alt="Manufacturing Process"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {steps.map((step, index) => (
-                            <div key={index} className="process-step bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-colors">
-                                <div className="w-12 h-12 rounded-lg bg-primary/20 flex items-center justify-center text-primary mb-4">
-                                    <step.icon size={24} />
-                                </div>
-                                <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                                <p className="text-gray-400 text-sm leading-relaxed">
-                                    {step.desc}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-
+        <section className="section-shell pt-32 bg-white">
+            <div className="container mx-auto px-4 md:px-8">
+                <div className="text-center max-w-4xl mx-auto mb-12 reveal">
+                    <SectionTitle alignment="center" subtitle="Products" title="Available Products" />
                 </div>
+
+                <div className="reveal mb-10 flex flex-wrap gap-3 justify-center">
+                    <button
+                        type="button"
+                        onClick={() => setActiveCategory('bottles')}
+                        className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${activeCategory === 'bottles'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                            : 'bg-gray-100 text-slate-700 hover:bg-gray-200'
+                            }`}
+                    >
+                        Bottles
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setActiveCategory('jars')}
+                        className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${activeCategory === 'jars'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                            : 'bg-gray-100 text-slate-700 hover:bg-gray-200'
+                            }`}
+                    >
+                        Jars
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setActiveCategory('preforms')}
+                        className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${activeCategory === 'preforms'
+                            ? 'bg-primary text-white shadow-lg shadow-primary/20'
+                            : 'bg-gray-100 text-slate-700 hover:bg-gray-200'
+                            }`}
+                    >
+                        Preforms
+                    </button>
+                </div>
+
+                {activeCategory === 'bottles' && (
+                    <div className="premium-card bg-gray-50 border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm mb-10">
+                        <h3 className="text-2xl font-bold mb-4">Bottles</h3>
+                        <ProductTable rows={bottleRows} />
+                    </div>
+                )}
+
+                {activeCategory === 'jars' && (
+                    <>
+                        <div className="premium-card bg-gray-50 border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm mb-8">
+                            <h3 className="text-2xl font-bold mb-4">Round Jar</h3>
+                            <ProductTable rows={roundJarRows} />
+                        </div>
+
+                        <div className="premium-card bg-gray-50 border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm mb-10">
+                            <h3 className="text-2xl font-bold mb-4">Square Jar</h3>
+                            <ProductTable rows={squareJarRows} />
+                        </div>
+                    </>
+                )}
+
+                {activeCategory === 'preforms' && (
+                    <>
+                        <PreformTable rows={waterPreforms} title="Water Preforms" />
+                        <PreformTable rows={juiceAndCsdPreforms} title="Juice and CSD Preforms" />
+                        <PreformTable rows={roppPreforms} title="ROPP Preforms" />
+                        <PreformTable rows={jarPreforms} title="Jar Preforms" isLast={true} />
+                    </>
+                )}
+
+                <RouteLink
+                    to="/contact"
+                    className="reveal inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/30 transition-all hover:scale-[1.03]"
+                >
+                    Contact Us <ArrowRight className="ml-2 w-5 h-5" />
+                </RouteLink>
             </div>
         </section>
     );

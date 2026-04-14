@@ -7,12 +7,12 @@ const Button = ({
     icon: Icon,
     ...props
 }) => {
-    const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-md font-medium transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    const baseStyles = "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 hover:scale-[1.03] focus:outline-none focus:ring-2 focus:ring-offset-2";
 
     const variants = {
-        primary: "bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/30",
-        secondary: "bg-white text-primary border-2 border-primary hover:bg-primary-50",
-        outline: "border-2 border-white text-white hover:bg-white/10",
+        primary: "bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30",
+        secondary: "bg-white text-primary border border-primary/30 hover:bg-primary/5",
+        outline: "border border-white/70 text-white hover:bg-white/15",
     };
 
     return (

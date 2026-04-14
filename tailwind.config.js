@@ -8,14 +8,18 @@ export default {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#388786',
-                    dark: '#2a6564', // Darker shade for hover
-                    light: '#5fa5a4', // Lighter shade
+                    DEFAULT: '#0A2540',
+                    dark: '#081D32',
+                    light: '#1C3F63',
                 },
-                secondary: '#ffffff',
+                accent: {
+                    DEFAULT: '#5a9b9e',
+                    dark: '#4d8689',
+                },
+                secondary: '#FFFFFF',
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['Manrope', 'Segoe UI', 'system-ui', 'sans-serif'],
             }
         },
     },

@@ -1,118 +1,99 @@
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
+import { ArrowRight, Award, CheckCircle, Factory, Shield } from 'lucide-react';
 import SectionTitle from '../ui/SectionTitle';
-import Button from '../ui/Button';
-import { CheckCircle, Shield, Award } from 'lucide-react';
+import RouteLink from '../ui/RouteLink';
 import aboutImage from '../../assets/about-main.jpg';
+import aboutOilJarsVideo from '../../assets/about-oil-jars-video.mp4';
 
-gsap.registerPlugin(ScrollTrigger);
+const points = [
+    '10+ years of proven manufacturing experience',
+    'Consistent production quality across batches',
+    'Industry specific packaging solutions',
+    'Custom design capability',
+    'Reliable delivery timelines',
+];
 
 const About = () => {
-    const sectionRef = useRef(null);
-
-    useEffect(() => {
-        const ctx = gsap.context(() => {
-            gsap.from(".about-content > *", {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 80%",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.2
-            });
-
-            gsap.from(".about-image", {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                },
-                x: -50,
-                opacity: 0,
-                duration: 1
-            });
-        }, sectionRef);
-
-        return () => ctx.revert();
-    }, []);
-
     return (
-        <section ref={sectionRef} id="about" className="py-20 bg-gray-50 overflow-hidden">
+        <section className="section-shell pt-32 bg-gray-50">
             <div className="container mx-auto px-4 md:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="text-center max-w-4xl mx-auto mb-14 reveal">
+                    <SectionTitle alignment="center" subtitle="About Geopacks" title="A Decade of Trusted PET Packaging Manufacturing" />
+                    <p className="text-gray-600 leading-relaxed">
+                        Since 2014, Geopacks has been manufacturing high quality PET bottles and preforms for industries including packaged drinking water, edible oil, juice, and dairy.
+                        With over a decade of hands on production experience, we focus on consistency, safety, and performance.
+                    </p>
+                    <p className="text-gray-600 mt-4 leading-relaxed">
+                        We understand real manufacturing challenges including filling compatibility, leakage control, material strength, and cost efficiency, and design our products to solve them.
+                    </p>
+                </div>
 
-                    {/* Image Side */}
-                    <div className="about-image relative">
-                        <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl h-[500px]">
-                            <img
-                                src={aboutImage}
-                                alt="Geopacks Manufacturing Plant"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                        {/* Decoration */}
-                        <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/20 rounded-full z-0"></div>
-                        <div className="absolute -top-10 -right-10 w-20 h-20 bg-primary/10 rounded-full z-0"></div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-14">
+                    <div className="reveal premium-card rounded-2xl overflow-hidden shadow-2xl border border-gray-100 h-[420px]">
+                        <img src={aboutImage} alt="Geopacks facility" className="w-full h-full object-cover" />
                     </div>
-
-                    {/* Content Side */}
-                    <div className="about-content">
-                        <SectionTitle
-                            subtitle="About Geopacks"
-                            title="A Decade of Reliable PET Packaging Manufacturing"
-                        />
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                            Founded in 2014, Geopacks is a well-established PET bottle and preform manufacturer serving industries such as juice, packaged drinking water, edible oil, and ghee. With over a decade of manufacturing experience, we have built a reputation for consistency, quality, and dependable delivery.
-                        </p>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                            Our long-term presence in the market allows us to understand real-world production challenges—filling line compatibility, leakage prevention, material optimization, and cost efficiency.
-                        </p>
-
-                        <div className="bg-primary/5 p-4 rounded-lg border-l-4 border-primary mb-8">
-                            <h4 className="font-bold text-primary mb-2">Our Mission</h4>
-                            <p className="text-sm text-gray-700 italic">
-                                "To manufacture high-quality, food-safe PET bottles and preforms while driving continuous improvement in sustainability, efficiency, and product design."
+                    <div className="space-y-8">
+                        <div className="reveal premium-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm" data-delay="80">
+                            <h3 className="text-2xl font-bold mb-3 flex items-center gap-2"><Factory className="text-primary" size={22} /> Who We Are</h3>
+                            <p className="text-gray-600">
+                                Geopacks is a specialized PET packaging manufacturer delivering reliable, food grade solutions at scale.
+                                Our facility is built to ensure precision molding, uniform quality, and dependable supply for growing brands.
                             </p>
                         </div>
 
-                        <div className="space-y-4 mb-8">
-                            <h4 className="font-bold text-lg border-b border-gray-200 pb-2 mb-4">Why Geopacks?</h4>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 shrink-0">
-                                    <Award size={16} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-md mb-1">Proven Experience</h4>
-                                    <p className="text-sm text-gray-500">Operating continuously since 2014, serving repeat customers across multiple industries.</p>
-                                </div>
-                            </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 shrink-0">
-                                    <Shield size={16} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-md mb-1">Manufacturing Consistency</h4>
-                                    <p className="text-sm text-gray-500">Stable processes refined over years of production—not experiments.</p>
-                                </div>
-                            </div>
-                            <div className="flex items-start gap-4">
-                                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary mt-1 shrink-0">
-                                    <CheckCircle size={16} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-md mb-1">Industry-Focused Solutions</h4>
-                                    <p className="text-sm text-gray-500">Packaging designed specifically for juice, water, oil, and ghee applications.</p>
-                                </div>
-                            </div>
+                        <div className="reveal premium-card bg-white rounded-2xl p-6 border border-gray-100 shadow-sm" data-delay="140">
+                            <h3 className="text-2xl font-bold mb-3 flex items-center gap-2"><Shield className="text-primary" size={22} /> Mission</h3>
+                            <p className="text-gray-600">
+                                To manufacture high quality, food safe PET bottles and preforms while continuously improving sustainability, efficiency, and product design.
+                            </p>
                         </div>
+                    </div>
+                </div>
 
-                        <Button>Learn More</Button>
+                <div className="reveal premium-card bg-white rounded-2xl p-8 md:p-10 border border-gray-100 shadow-sm">
+                    <h3 className="text-2xl font-bold mb-6 flex items-center gap-2"><Award className="text-primary" size={22} /> Why Choose Us</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                        {points.map((item) => (
+                            <div key={item} className="flex items-start gap-3">
+                                <CheckCircle className="text-primary shrink-0 mt-0.5" size={18} />
+                                <p className="text-gray-700">{item}</p>
+                            </div>
+                        ))}
+                    </div>
+                    <RouteLink
+                        to="/contact"
+                        className="inline-flex items-center justify-center px-6 py-3 rounded-md font-medium bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/30 transition-all"
+                    >
+                        Contact Us
+                    </RouteLink>
+                </div>
+
+                <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                    <div className="reveal premium-card rounded-2xl overflow-hidden border border-gray-100 shadow-2xl aspect-video bg-white">
+                        <video
+                            src={aboutOilJarsVideo}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="w-full h-full object-cover"
+                        />
                     </div>
 
+                    <div className="reveal premium-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                        <h3 className="text-2xl font-bold mb-4">Open Office Location in Google Maps</h3>
+                        <p className="text-gray-600 mb-6">
+                            Visit our office location directly using Google Maps for quick navigation.
+                        </p>
+                        <a
+                            href="https://share.google/E7CzVLaD94KBhXlP4"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-primary font-semibold hover:underline"
+                        >
+                            Open Office Location in Google Maps <ArrowRight className="ml-2 w-4 h-4" />
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

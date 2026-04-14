@@ -1,20 +1,20 @@
 import React from 'react';
 
-const SectionTitle = ({ subtitle, title, alignment = 'left', className = '' }) => {
+const SectionTitle = ({ subtitle, title, alignment = 'left', className = '', subtitleClassName = '', titleClassName = '', lineClassName = '' }) => {
     const alignClass = alignment === 'center' ? 'text-center' : 'text-left';
     const lineClass = alignment === 'center' ? 'mx-auto' : 'mr-auto';
 
     return (
         <div className={`mb-12 ${alignClass} ${className}`}>
             {subtitle && (
-                <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-2 block">
+                <span className={`reveal text-primary font-semibold tracking-[0.15em] uppercase text-xs md:text-sm mb-3 block ${subtitleClassName}`}>
                     {subtitle}
                 </span>
             )}
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+            <h2 className={`reveal text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 leading-tight ${titleClassName}`} data-delay="90">
                 {title}
             </h2>
-            <div className={`h-1 w-20 bg-primary rounded-full ${lineClass}`}></div>
+            <div className={`reveal h-1 w-20 bg-accent rounded-full ${lineClass} ${lineClassName}`} data-delay="150"></div>
         </div>
     );
 };

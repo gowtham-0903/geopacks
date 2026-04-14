@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,7 +11,7 @@
   }
 
   body {
-    @apply text-slate-800 bg-white font-sans antialiased;
+    @apply text-slate-700 bg-white font-sans antialiased;
   }
 
   h1,
@@ -20,5 +21,135 @@
   h5,
   h6 {
     @apply font-bold text-slate-900;
+  }
+}
+
+@layer components {
+  .section-shell {
+    @apply py-20 md:py-24;
+  }
+
+  .premium-card {
+    @apply rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300;
+  }
+
+  .premium-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 40px rgba(10, 37, 64, 0.12);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1), transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: transform, opacity;
+  }
+
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-enter {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: hero-fade-up 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  .hero-delay-1 {
+    animation-delay: 120ms;
+  }
+
+  .hero-delay-2 {
+    animation-delay: 260ms;
+  }
+
+  .hero-delay-3 {
+    animation-delay: 400ms;
+  }
+
+  .hero-delay-4 {
+    animation-delay: 540ms;
+  }
+
+  .hero-delay-5 {
+    animation-delay: 680ms;
+  }
+
+  .client-marquee-viewport {
+    @apply mx-auto max-w-7xl overflow-hidden;
+  }
+
+  .client-marquee-track {
+    @apply flex w-max gap-4 px-4;
+    animation: client-marquee 12s linear infinite;
+  }
+
+  .client-marquee-viewport:hover .client-marquee-track {
+    animation-play-state: paused;
+  }
+
+  .client-marquee-item {
+    @apply h-40 w-72 shrink-0 overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm;
+  }
+
+  .floating-shape {
+    animation: float-shape 4.6s ease-in-out infinite;
+  }
+
+  .floating-shape:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  .floating-shape:nth-child(3) {
+    animation-delay: 1.2s;
+  }
+}
+
+@keyframes client-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hero-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-shape {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@media (max-width: 768px) {
+  .reveal {
+    transition-duration: 500ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .hero-enter,
+  .floating-shape,
+  .client-marquee-track {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
