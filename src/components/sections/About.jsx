@@ -3,7 +3,7 @@ import { ArrowRight, Award, CheckCircle, Factory, Shield } from 'lucide-react';
 import SectionTitle from '../ui/SectionTitle';
 import RouteLink from '../ui/RouteLink';
 import aboutImage from '../../assets/about-main.jpg';
-import aboutOilJarsVideo from '../../assets/about-oil-jars-video.mp4';
+
 
 const points = [
     '10+ years of proven manufacturing experience',
@@ -71,13 +71,13 @@ const About = () => {
                 <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                     <div className="reveal premium-card rounded-2xl overflow-hidden border border-gray-100 shadow-2xl aspect-video bg-white">
                         <video
-                            src={aboutOilJarsVideo}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="w-full h-full object-cover"
-                        />
+    src="https://res.cloudinary.com/dezbb3rn5/video/upload/v1772212581/process-video_tvcwie.mp4"
+    autoPlay
+    muted
+    loop
+    playsInline
+    className="w-full h-full object-cover"
+/>
                     </div>
 
                     <div className="reveal premium-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
