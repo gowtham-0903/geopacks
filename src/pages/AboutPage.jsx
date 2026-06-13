@@ -42,7 +42,7 @@ const pillars = [
   {
     icon: Target,
     title: 'Mission',
-    desc: 'To manufacture high-quality, food-safe PET bottles and preforms while continuously improving sustainability, efficiency, and product design.',
+    desc: 'To manufacture high quality, food safe PET bottles and preforms while continuously improving sustainability, efficiency, and product design.',
   },
   {
     icon: Eye,
@@ -93,8 +93,8 @@ const AboutPage = () => (
           <SectionTitle subtitle="Our Story" title="Real manufacturing experience, by design" />
           <p className="mb-4 leading-relaxed text-ink-800/70">
             With over a decade of hands-on production experience, we understand real manufacturing
-            challenges — filling compatibility, leakage control, material strength, and cost
-            efficiency — and design our products to solve them.
+            challenges  filling compatibility, leakage control, material strength, and cost
+            efficiency  and design our products to solve them.
           </p>
           <p className="leading-relaxed text-ink-800/70">
             Our facility is built to ensure precision molding, uniform quality, and dependable
