@@ -1,37 +1,23 @@
-import React from 'react';
+import { Link } from 'vite-react-ssg';
 
-const isModifiedClick = (event) =>
-    event.metaKey || event.altKey || event.ctrlKey || event.shiftKey;
+// Internal links render as real <a> tags (good for SEO + prerender) and use the
+// router for client-side navigation. External / hash links fall back to <a>.
+const RouteLink = ({ to, children, ...props }) => {
+  const isInternal = typeof to === 'string' && to.startsWith('/');
 
-const navigateTo = (path) => {
-    const nextPath = path.startsWith('/') ? path : `/${path}`;
-    if (window.location.pathname === nextPath) return;
-    window.history.pushState({}, '', nextPath);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
-const RouteLink = ({ to, children, onClick, ...props }) => {
-    const handleClick = (event) => {
-        onClick?.(event);
-        if (
-            event.defaultPrevented ||
-            event.button !== 0 ||
-            isModifiedClick(event) ||
-            props.target === '_blank' ||
-            !to?.startsWith('/')
-        ) {
-            return;
-        }
-        event.preventDefault();
-        navigateTo(to);
-    };
-
+  if (!isInternal) {
     return (
-        <a href={to} onClick={handleClick} {...props}>
-            {children}
-        </a>
+      <a href={to} {...props}>
+        {children}
+      </a>
     );
+  }
+
+  return (
+    <Link to={to} {...props}>
+      {children}
+    </Link>
+  );
 };
 
 export default RouteLink;

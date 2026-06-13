@@ -1,236 +1,276 @@
-import React from 'react';
-import { ArrowRight, CheckCircle2, Mail, MapPin, Package, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Milk,
+  Container,
+  Disc3,
+  FlaskConical,
+  Sparkles,
+  Printer,
+  MapPin,
+  Phone,
+  Mail,
+} from 'lucide-react';
+import Seo from '../components/seo/Seo';
 import Hero from '../components/sections/Hero';
-import RouteLink from '../components/ui/RouteLink';
+import ClientMarquee from '../components/sections/ClientMarquee';
+import FAQ from '../components/sections/FAQ';
+import CTASection from '../components/sections/CTASection';
 import SectionTitle from '../components/ui/SectionTitle';
+import { Reveal, Stagger, StaggerItem, Counter } from '../components/ui/Motion';
+import { AccentBar } from '../components/ui/Decor';
 import aboutPreviewBottle from '../assets/about-preview-bottle.jpg';
-import clientLogo01 from '../assets/clients/client-logo-01.gif';
-import clientLogo02 from '../assets/clients/client-logo-02.jpg';
-import clientLogo03 from '../assets/clients/client-logo-03.jpeg';
-import clientLogo04 from '../assets/clients/client-logo-04.jpeg';
-import clientLogo05 from '../assets/clients/client-logo-05.png';
-import clientLogo06 from '../assets/clients/client-logo-06.png';
-import clientLogo07 from '../assets/clients/client-logo-07.jpeg';
+import { productCards, counts } from '../config/products';
+import { business, industries, organizationSchema, localBusinessSchema } from '../config/site';
+import { faqSchema } from '../config/faq';
 
-const productCards = [
-    {
-        title: 'PET Bottles',
-        desc: 'High quality bottles available from 200 ml to 2 litre for water, juice, and oil applications.',
-    },
-    {
-        title: 'PET Jars',
-        desc: 'Wide mouth jars ideal for dairy products, pickles, powders, and food storage.',
-    },
-    {
-        title: 'Caps & Closures',
-        desc: 'Tamper proof caps designed for secure sealing and durability.',
-    },
-    {
-        title: 'PET Preforms',
-        desc: 'Strong and consistent preforms for reliable bottle blowing.',
-    },
-    {
-        title: 'Custom Designs',
-        desc: 'Unique bottle shapes tailored to your brand identity.',
-    },
-    {
-        title: 'Printing Services',
-        desc: 'High quality branding with screen and offset printing.',
-    },
-];
+const iconMap = {
+  bottle: Milk,
+  jar: Container,
+  cap: Disc3,
+  preform: FlaskConical,
+  custom: Sparkles,
+  print: Printer,
+};
 
 const trustPoints = [
-    'Over 10 years of manufacturing experience',
-    'Consistent production quality across batches',
-    '100% food grade PET materials',
-    'Industry specific packaging solutions',
-    'Custom design and molding capability',
-    'Reliable supply and on time delivery',
+  'Over 10 years of manufacturing experience',
+  'Consistent production quality across batches',
+  '100% food-grade PET materials',
+  'Industry-specific packaging solutions',
+  'Custom design and molding capability',
+  'Reliable supply and on-time delivery',
 ];
 
-const industries = [
-    'Packaged Drinking Water',
-    'Juice & Beverages',
-    'Edible Oil',
-    'Dairy & Ghee',
-    'Food Products',
+const stats = [
+  { value: 11, suffix: '+', label: 'Years of expertise' },
+  { value: counts.bottles, suffix: '+', label: 'Bottle variants' },
+  { value: counts.preforms, suffix: '+', label: 'Preform specifications' },
+  { value: industries.length, suffix: '', label: 'Industries served' },
 ];
 
-const clientImages = [clientLogo01, clientLogo02, clientLogo03, clientLogo04, clientLogo05, clientLogo06, clientLogo07];
-const marqueeImages = [...clientImages, ...clientImages];
-const logoScrollDuration = '22s';
+const HomePage = () => (
+  <>
+    <Seo
+      title="PET Bottles, Jars, Caps & Preforms Manufacturer"
+      description="Geopacks manufactures food-grade PET bottles, jars, caps, and preforms for water, juice, edible oil, and dairy brands. Trusted PET packaging manufacturer in Tamil Nadu since 2014."
+      path="/"
+      schema={[organizationSchema, localBusinessSchema, faqSchema]}
+    />
 
-const HomePage = () => {
-    return (
-        <>
-            <Hero />
+    <Hero />
 
-            <section className="section-shell bg-gray-50">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className="reveal">
-                            <SectionTitle subtitle="About Geopacks" title="Trusted PET packaging expertise since 2014" />
-                            <p className="text-gray-600 mb-4 leading-relaxed">
-                                Since 2014, Geopacks has been a trusted manufacturer of PET bottles and preforms, serving industries such as packaged drinking water, edible oil, juice, and dairy.
-                                With years of hands on manufacturing experience, we focus on delivering consistent quality, food safety, and production reliability.
-                            </p>
-                            <p className="text-gray-600 mb-8 leading-relaxed">
-                                We design our packaging solutions to meet real world requirements including filling compatibility, leakage prevention, durability, and cost efficiency.
-                            </p>
-                            <RouteLink
-                                to="/about"
-                                className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/30 transition-all hover:scale-[1.03]"
-                            >
-                                Learn More <ArrowRight className="ml-2 w-5 h-5" />
-                            </RouteLink>
-                        </div>
-                        <div className="reveal premium-card rounded-2xl overflow-hidden border border-gray-100 shadow-2xl aspect-video bg-white" data-delay="100">
-                            <img
-                                src={aboutPreviewBottle}
-                                alt="Transparent water bottle"
-                                className="w-full h-full object-cover"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </section>
+    {/* About preview */}
+    <section className="section-shell bg-steel-50">
+      <div className="container-x grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+        <Reveal>
+          <SectionTitle subtitle="About Geopacks" title="Trusted PET packaging expertise since 2014" />
+          <p className="mb-4 leading-relaxed text-ink-800/70">
+            Since 2014, Geopacks has been a trusted manufacturer of PET bottles and preforms, serving
+            packaged drinking water, edible oil, juice, and dairy industries. With years of hands-on
+            experience, we focus on consistent quality, food safety, and production reliability.
+          </p>
+          <p className="mb-8 leading-relaxed text-ink-800/70">
+            We design packaging to meet real-world requirements — filling compatibility, leakage
+            prevention, durability, and cost efficiency.
+          </p>
+          <Link to="/about" className="btn-primary">
+            Learn More <ArrowUpRight className="h-5 w-5" />
+          </Link>
+        </Reveal>
+        <Reveal delay={0.12} className="relative">
+          <div className="overflow-hidden rounded-3xl border border-steel-100 shadow-card">
+            <img
+              src={aboutPreviewBottle}
+              alt="Transparent Geopacks PET water bottle"
+              width="640"
+              height="420"
+              loading="lazy"
+              className="aspect-[4/3] w-full object-cover"
+            />
+          </div>
+          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-steel-100 bg-white px-6 py-4 shadow-lift sm:block">
+            <p className="font-display text-2xl font-bold text-ink-900">Food-grade</p>
+            <p className="text-sm text-ink-800/60">100% PET material</p>
+          </div>
+        </Reveal>
+      </div>
+    </section>
 
-            <section className="section-shell bg-white">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
-                        <SectionTitle alignment="center" subtitle="Comprehensive PET Packaging Solutions" title="Our Products" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {productCards.map((item, index) => (
-                            <div key={item.title} className="reveal premium-card bg-gray-50 rounded-2xl p-6 border border-gray-100" data-delay={String(60 * index)}>
-                                <div className="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-4">
-                                    <Package size={20} />
-                                </div>
-                                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                                <p className="text-gray-600">{item.desc}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+    {/* Products overview */}
+    <section className="section-shell bg-white">
+      <div className="container-x">
+        <div className="mx-auto max-w-2xl text-center">
+          <SectionTitle
+            alignment="center"
+            subtitle="Comprehensive PET packaging solutions"
+            title="Our Products"
+          />
+        </div>
+        <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {productCards.map((item) => {
+            const Icon = iconMap[item.icon] || Container;
+            return (
+              <StaggerItem key={item.title}>
+                <Link
+                  to="/products"
+                  className="group flex h-full flex-col rounded-2xl border border-steel-100 bg-steel-50/60 p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-accent/30 hover:bg-white hover:shadow-card"
+                >
+                  <div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-accent/10 text-accent-dark transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
+                    <Icon size={22} />
+                  </div>
+                  <h3 className="mb-2 font-display text-xl font-bold text-ink-900">{item.title}</h3>
+                  <p className="flex-1 text-ink-800/65">{item.desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-dark opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    View specifications <ArrowUpRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              </StaggerItem>
+            );
+          })}
+        </Stagger>
+      </div>
+    </section>
 
-            <section className="section-shell bg-slate-900 text-white">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="max-w-4xl reveal">
-                        <SectionTitle subtitle="Why Choose Geopacks" title="Built on consistency, quality, and delivery trust" subtitleClassName="text-primary" titleClassName="text-white" />
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {trustPoints.map((point, index) => (
-                            <div key={point} className="reveal premium-card bg-white/5 border border-white/10 rounded-xl p-4 flex items-start gap-3" data-delay={String(50 * index)}>
-                                <CheckCircle2 className="text-primary shrink-0 mt-0.5" size={18} />
-                                <p className="text-gray-200">{point}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+    {/* Why choose — dark band */}
+    <section className="section-shell relative overflow-hidden bg-ink-800 text-white">
+      <div className="absolute inset-0 bg-mesh-ink opacity-70" />
+      <div className="container-x relative grid grid-cols-1 gap-12 lg:grid-cols-2">
+        <div>
+          <SectionTitle
+            dark
+            subtitle="Why Choose Geopacks"
+            title="Built on consistency, quality, and delivery trust"
+            subtitleClassName="text-accent-bright"
+          />
+          <p className="max-w-md text-steel-200">
+            Brands choose Geopacks because every batch ships to the same standard — the bottles fit
+            your line, seal cleanly, and arrive on schedule.
+          </p>
+        </div>
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {trustPoints.map((point) => (
+            <StaggerItem
+              key={point}
+              className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.04] p-4 backdrop-blur-sm"
+            >
+              <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-bright" />
+              <p className="text-steel-100">{point}</p>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
+    </section>
 
-            <section className="section-shell bg-gray-50">
-                <div className="container mx-auto px-4 md:px-8">
-                    <SectionTitle alignment="center" title="Industries We Serve" />
-                    <div className="flex flex-wrap justify-center gap-3 mb-6">
-                        {industries.map((industry, index) => (
-                            <span key={industry} className="reveal bg-white border border-gray-200 rounded-full px-4 py-2 text-sm font-medium text-slate-700" data-delay={String(40 * index)}>
-                                {industry}
-                            </span>
-                        ))}
-                    </div>
-                    <p className="reveal text-center text-gray-600 max-w-3xl mx-auto" data-delay="160">
-                        We design packaging specifically suited for each industry&apos;s storage, safety, and transportation needs.
-                    </p>
-                </div>
-            </section>
+    {/* Stats counters */}
+    <section className="border-y border-steel-100 bg-steel-50 py-14">
+      <div className="container-x grid grid-cols-2 gap-8 lg:grid-cols-4">
+        {stats.map((s, i) => (
+          <Reveal key={s.label} delay={i * 0.08} className="text-center">
+            <Counter
+              to={s.value}
+              suffix={s.suffix}
+              className="font-display text-4xl font-extrabold text-ink-900 md:text-5xl"
+            />
+            <p className="mt-2 text-sm font-medium text-ink-800/60">{s.label}</p>
+          </Reveal>
+        ))}
+      </div>
+    </section>
 
-            <section className="section-shell bg-gray-50 overflow-hidden">
-                <div className="container mx-auto px-4 md:px-8 mb-8">
-                    <SectionTitle alignment="center" title="Clients" />
-                </div>
-                <div className="relative client-marquee-viewport">
-                    <div className="client-marquee-track" style={{ animationDuration: logoScrollDuration }}>
-                        {marqueeImages.map((image, index) => (
-                            <div key={`${image}-${index}`} className="client-marquee-item">
-                                <img src={image} alt={`Client logo ${index + 1}`} className="w-full h-full object-contain p-4 bg-white" />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+    {/* Industries */}
+    <section className="section-shell bg-white">
+      <div className="container-x">
+        <SectionTitle alignment="center" subtitle="Sectors we supply" title="Industries We Serve" />
+        <Stagger className="mb-6 flex flex-wrap justify-center gap-3" gap={0.06}>
+          {industries.map((industry) => (
+            <StaggerItem
+              key={industry}
+              className="rounded-full border border-steel-200 bg-steel-50 px-5 py-2.5 text-sm font-semibold text-ink-800 transition-colors hover:border-accent/40 hover:text-accent-dark"
+            >
+              {industry}
+            </StaggerItem>
+          ))}
+        </Stagger>
+        <Reveal delay={0.15}>
+          <p className="mx-auto max-w-2xl text-center text-ink-800/65">
+            We design packaging specifically suited for each industry&apos;s storage, safety, and
+            transportation needs.
+          </p>
+        </Reveal>
+      </div>
+    </section>
 
-            <section className="section-shell bg-primary text-white">
-                <div className="container mx-auto px-4 md:px-8 text-center max-w-4xl reveal">
-                    <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-slate-200">Looking for Reliable PET Packaging?</h2>
-                    <p className="text-white/90 mb-8 text-lg">
-                        Get high quality, food grade PET bottles and preforms manufactured with precision and delivered on time.
-                    </p>
-                    <RouteLink
-                        to="/contact"
-                        className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-accent text-white hover:bg-accent-dark transition-all hover:scale-[1.03] shadow-xl shadow-accent/20"
-                    >
-                        Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-                    </RouteLink>
-                </div>
-            </section>
+    {/* Clients */}
+    <section className="section-shell bg-steel-50">
+      <div className="container-x mb-10">
+        <SectionTitle alignment="center" subtitle="In good company" title="Trusted by Leading Brands" />
+      </div>
+      <ClientMarquee />
+    </section>
 
-            <section className="section-shell bg-white">
-                <div className="container mx-auto px-4 md:px-8">
-                    <div className="max-w-6xl mx-auto bg-gray-50 border border-gray-100 rounded-2xl p-8 md:p-10 reveal">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                            <div>
-                                <SectionTitle subtitle="Get in Touch" title="We are ready to support your packaging needs" />
-                                <div className="space-y-5 mb-8">
-                                    <div className="flex items-start gap-3">
-                                        <MapPin className="text-primary shrink-0 mt-1" size={20} />
-                                        <p className="text-gray-700">Pollachi,  Udumalpet Road, Poolankinar, Tamil Nadu</p>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <Phone className="text-primary shrink-0 mt-1" size={20} />
-                                        <p className="text-gray-700">+91 9751546565</p>
-                                    </div>
-                                    <div className="flex items-start gap-3">
-                                        <Mail className="text-primary shrink-0 mt-1" size={20} />
-                                        <p className="text-gray-700">geopacks2015@gmail.com</p>
-                                    </div>
-                                </div>
-                                <RouteLink
-                                    to="/contact"
-                                    className="inline-flex items-center justify-center px-6 py-3 rounded-md font-medium bg-primary text-white hover:bg-primary-dark shadow-lg shadow-primary/30 transition-all"
-                                >
-                                    Contact Us <ArrowRight className="ml-2 w-5 h-5" />
-                                </RouteLink>
-                            </div>
-                            <div>
-                                <div className="w-full h-80 bg-gray-200 rounded-2xl overflow-hidden shadow-md border border-gray-200">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.486236772718!2d77.08182737480834!3d10.6698669894732!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8362677945d8b%3A0x6b80145260100f!2sPoolankinar%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1705384600000!5m2!1sen!2sin"
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0 }}
-                                        allowFullScreen=""
-                                        loading="lazy"
-                                        referrerPolicy="no-referrer-when-downgrade"
-                                        title="Geopacks Office Location"
-                                    />
-                                </div>
-                                <a
-                                    href="https://share.google/E7CzVLaD94KBhXlP4"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center mt-4 text-primary font-semibold hover:underline"
-                                >
-                                    Open in Google Maps <ArrowRight className="ml-2 w-4 h-4" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </>
-    );
-};
+    <FAQ />
+
+    {/* Contact preview */}
+    <section className="section-shell bg-white">
+      <div className="container-x">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl border border-steel-100 bg-steel-50 shadow-card">
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            <div className="p-8 md:p-12">
+              <AccentBar className="mb-5" />
+              <h2 className="font-display text-2xl font-bold text-ink-900 md:text-3xl">
+                We&apos;re ready to support your packaging needs
+              </h2>
+              <div className="mt-8 space-y-5">
+                <a
+                  href={business.mapsShareUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start gap-3 text-ink-800/75 hover:text-accent-dark"
+                >
+                  <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent" />
+                  {business.address.city}, {business.address.line1}, {business.address.line2},{' '}
+                  {business.address.region}
+                </a>
+                <a
+                  href={`tel:${business.phoneRaw}`}
+                  className="flex items-center gap-3 text-ink-800/75 hover:text-accent-dark"
+                >
+                  <Phone className="h-5 w-5 shrink-0 text-accent" />
+                  {business.phone}
+                </a>
+                <a
+                  href={`mailto:${business.email}`}
+                  className="flex items-center gap-3 text-ink-800/75 hover:text-accent-dark"
+                >
+                  <Mail className="h-5 w-5 shrink-0 text-accent" />
+                  {business.email}
+                </a>
+              </div>
+              <Link to="/contact" className="btn-primary mt-9">
+                Contact Us <ArrowUpRight className="h-5 w-5" />
+              </Link>
+            </div>
+            <div className="min-h-[320px] bg-steel-100">
+              <iframe
+                src={business.mapsEmbedUrl}
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: '320px' }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Geopacks office location on Google Maps"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </>
+);
 
 export default HomePage;

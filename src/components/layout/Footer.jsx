@@ -1,75 +1,170 @@
-import React from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Mail, MapPin, Phone, ArrowUpRight, Instagram, Facebook, Linkedin, MapPinned } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import RouteLink from '../ui/RouteLink';
+import { MeshGlow, GridPattern } from '../ui/Decor';
 import logo from '../../assets/logo.png';
+import { business, whatsappUrl } from '../../config/site';
+
+const quickLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Services', href: '/services' },
+  { name: 'Products', href: '/products' },
+  { name: 'Contact Us', href: '/contact' },
+];
+
+const productLinks = [
+  'PET Bottles',
+  'PET Jars',
+  'PET Preforms',
+  'Caps & Closures',
+  'Custom Designs',
+];
+
+const socials = [
+  { key: 'googleBusiness', label: 'Google Business', Icon: MapPinned },
+  { key: 'instagram', label: 'Instagram', Icon: Instagram },
+  { key: 'facebook', label: 'Facebook', Icon: Facebook },
+  { key: 'linkedin', label: 'LinkedIn', Icon: Linkedin },
+];
 
 const Footer = () => {
-    return (
-        <footer className="bg-slate-900 text-white pt-16 pb-8">
-            <div className="container mx-auto px-4 md:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {/* Company Info */}
-                    <div>
-                        <div className="mb-6">
-                            <img src={logo} alt="Geopacks logo" className="h-12 w-auto object-contain" />
-                        </div>
-                        <p className="text-gray-400 mb-6 leading-relaxed">
-                            Geopacks — Manufacturing PET bottles, jars, caps, and preforms since 2014.
-                            Trusted by food, beverage, oil, and dairy brands for consistent, food grade packaging solutions.
-                        </p>
-                    </div>
+  const year = new Date().getFullYear();
+  const activeSocials = socials.filter((s) => business.social[s.key]);
 
-                    {/* Quick Links */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Quick Links</h4>
-                        <ul className="space-y-3">
-                            {[
-                                { name: 'Home', href: '/' },
-                                { name: 'About Us', href: '/about' },
-                                { name: 'Services', href: '/services' },
-                                { name: 'Products', href: '/products' },
-                                { name: 'Contact Us', href: '/contact' },
-                            ].map((item) => (
-                                <li key={item.name}>
-                                    <RouteLink to={item.href} className="text-gray-400 hover:text-accent transition-colors flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
-                                        {item.name}
-                                    </RouteLink>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+  return (
+    <footer className="relative overflow-hidden bg-ink-900 text-steel-100">
+      <MeshGlow className="opacity-60" />
+      <GridPattern className="opacity-[0.04]" />
 
-                    {/* Contact Info */}
-                    <div>
-                        <h4 className="text-lg font-bold mb-6 text-white">Contact Us</h4>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3 text-gray-400">
-                                <MapPin className="text-accent mt-1 shrink-0" size={18} />
-                                <span>Poolankinar, Pollachi, Udumalpet Road, Tamil Nadu, India</span>
-                            </li>
-                            <li className="flex items-center gap-3 text-gray-400">
-                                <Phone className="text-accent shrink-0" size={18} />
-                                <span>+91 9751546565</span>
-                            </li>
-                            <li className="flex items-center gap-3 text-gray-400">
-                                <Mail className="text-accent shrink-0" size={18} />
-                                <span>geopacks2015@gmail.com</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+      {/* CTA strip */}
+      <div className="container-x relative">
+        <div className="-mt-px flex flex-col items-start justify-between gap-6 border-b border-white/10 py-12 md:flex-row md:items-center">
+          <div>
+            <h2 className="text-2xl font-bold text-white md:text-3xl">
+              Ready to package your product right?
+            </h2>
+            <p className="mt-2 max-w-xl text-steel-300">
+              Tell us your bottle, jar, or preform requirement — we&apos;ll get back with specs and
+              pricing.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <Link to="/contact" className="btn-accent">
+              Request a Quote <ArrowUpRight className="h-4 w-4" />
+            </Link>
+            <a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
+            >
+              WhatsApp Us
+            </a>
+          </div>
+        </div>
+      </div>
 
-                <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                    <p>© 2014–Present Geopacks. All Rights Reserved.</p>
-                    <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-accent">Privacy Policy</a>
-                        <a href="#" className="hover:text-accent">Terms of Service</a>
-                    </div>
-                </div>
+      <div className="container-x relative grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
+        <div className="lg:col-span-4">
+          <img src={logo} alt="Geopacks logo" className="h-12 w-auto object-contain brightness-0 invert" />
+          <p className="mt-5 max-w-sm leading-relaxed text-steel-300">
+            {business.name} — manufacturing food-grade PET bottles, jars, caps, and preforms since{' '}
+            {business.foundedYear}. Trusted by water, juice, edible oil, and dairy brands across India.
+          </p>
+          {activeSocials.length > 0 && (
+            <div className="mt-6 flex gap-3">
+              {activeSocials.map(({ key, label, Icon }) => (
+                <a
+                  key={key}
+                  href={business.social[key]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/15 text-steel-200 transition-colors hover:border-accent-bright/50 hover:bg-accent/15 hover:text-white"
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
             </div>
-        </footer>
-    );
+          )}
+        </div>
+
+        <div className="lg:col-span-2">
+          <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-white">Quick Links</h3>
+          <ul className="space-y-3">
+            {quickLinks.map((item) => (
+              <li key={item.name}>
+                <RouteLink
+                  to={item.href}
+                  className="group inline-flex items-center gap-2 text-steel-300 transition-colors hover:text-accent-bright"
+                >
+                  <span className="h-1 w-1 rounded-full bg-accent transition-all group-hover:w-3" />
+                  {item.name}
+                </RouteLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="lg:col-span-3">
+          <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-white">Products</h3>
+          <ul className="space-y-3">
+            {productLinks.map((item) => (
+              <li key={item}>
+                <RouteLink
+                  to="/products"
+                  className="group inline-flex items-center gap-2 text-steel-300 transition-colors hover:text-accent-bright"
+                >
+                  <span className="h-1 w-1 rounded-full bg-accent transition-all group-hover:w-3" />
+                  {item}
+                </RouteLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="lg:col-span-3">
+          <h3 className="mb-5 text-sm font-bold uppercase tracking-wider text-white">Contact</h3>
+          <ul className="space-y-4 text-steel-300">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 shrink-0 text-accent-bright" size={18} />
+              <span>
+                {business.address.line1}, {business.address.line2}, {business.address.city},{' '}
+                {business.address.region}, {business.address.country}
+              </span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Phone className="shrink-0 text-accent-bright" size={18} />
+              <a href={`tel:${business.phoneRaw}`} className="hover:text-white">
+                {business.phone}
+              </a>
+            </li>
+            <li className="flex items-center gap-3">
+              <Mail className="shrink-0 text-accent-bright" size={18} />
+              <a href={`mailto:${business.email}`} className="hover:text-white">
+                {business.email}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="container-x relative flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-sm text-steel-400 md:flex-row">
+        <p>
+          © {business.foundedYear}–{year} {business.name}. All Rights Reserved.
+        </p>
+        <div className="flex gap-6">
+          <RouteLink to="/privacy-policy" className="transition-colors hover:text-accent-bright">
+            Privacy Policy
+          </RouteLink>
+          <RouteLink to="/terms" className="transition-colors hover:text-accent-bright">
+            Terms of Service
+          </RouteLink>
+        </div>
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

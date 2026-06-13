@@ -20,7 +20,13 @@ pnpm-debug.log*
 Thumbs.db
 .idea/
 .vscode/
+.claude/
 
-# Local videos (using hosted Cloudinary URLs instead)
+# Local videos (served from Cloudinary)
 src/assets/blowing-video.mp4
 src/assets/process-video.mp4
+*.mp4
+
+# Raw working-asset folders (not part of the build)
+stock images/
+CLIENT LOGOS/
