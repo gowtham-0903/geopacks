@@ -67,7 +67,7 @@ const Footer = () => {
 
       <div className="container-x relative grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">
-          <img src={logo} alt="Geopacks logo" className="h-12 w-auto object-contain brightness-0 invert" />
+          <img src={logo} alt="Geopacks logo" className="h-12 w-auto object-contain " />
           <p className="mt-5 max-w-sm leading-relaxed text-steel-300">
             {business.name} — manufacturing food-grade PET bottles, jars, caps, and preforms since{' '}
             {business.foundedYear}. Trusted by water, juice, edible oil, and dairy brands across India.
