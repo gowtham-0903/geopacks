@@ -45,7 +45,7 @@ const Footer = () => {
               Ready to package your product right?
             </h2>
             <p className="mt-2 max-w-xl text-steel-300">
-              Tell us your bottle, jar, or preform requirement — we&apos;ll get back with specs and
+              Tell us your bottle, jar, or preform requirement - we&apos;ll get back with specs and
               pricing.
             </p>
           </div>
@@ -69,7 +69,7 @@ const Footer = () => {
         <div className="lg:col-span-4">
           <img src={logo} alt="Geopacks logo" className="h-12 w-auto object-contain " />
           <p className="mt-5 max-w-sm leading-relaxed text-steel-300">
-            {business.name} — manufacturing food-grade PET bottles, jars, caps, and preforms since{' '}
+            {business.name} - manufacturing food-grade PET bottles, jars, caps, and preforms since{' '}
             {business.foundedYear}. Trusted by water, juice, edible oil, and dairy brands across India.
           </p>
           {activeSocials.length > 0 && (
@@ -150,17 +150,27 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="container-x relative flex flex-col items-center justify-between gap-4 border-t border-white/10 py-6 text-sm text-steel-400 md:flex-row">
-        <p>
-          © {business.foundedYear}–{year} {business.name}. All Rights Reserved.
-        </p>
-        <div className="flex gap-6">
-          <RouteLink to="/privacy-policy" className="transition-colors hover:text-accent-bright">
-            Privacy Policy
-          </RouteLink>
-          <RouteLink to="/terms" className="transition-colors hover:text-accent-bright">
-            Terms of Service
-          </RouteLink>
+      <div className="container-x relative border-t border-white/10 py-6 text-sm text-steel-400">
+        <div className="grid grid-cols-1 items-center gap-3 text-center md:grid-cols-3 md:text-left">
+          <p>
+            &copy; {business.foundedYear}-{year} {business.name}. All Rights Reserved.
+          </p>
+          <a
+            href="https://vyanic.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="justify-self-center transition-colors hover:text-accent-bright"
+          >
+            Designed by Vyanic Technologies
+          </a>
+          <div className="flex justify-center gap-6 md:justify-self-end">
+            <RouteLink to="/privacy-policy" className="transition-colors hover:text-accent-bright">
+              Privacy Policy
+            </RouteLink>
+            <RouteLink to="/terms" className="transition-colors hover:text-accent-bright">
+              Terms of Service
+            </RouteLink>
+          </div>
         </div>
       </div>
     </footer>
