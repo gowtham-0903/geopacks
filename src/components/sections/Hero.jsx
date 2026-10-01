@@ -54,15 +54,15 @@ const Hero = () => {
               variants={item}
               className="mt-6 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              PET Bottles &amp; Preform
+              PET Bottle &amp; Jar
               <br />
-              <span className="text-gradient">Manufacturer</span>
+              <span className="text-gradient">Manufacturer in Tamil Nadu</span>
             </motion.h1>
 
             <motion.p variants={item} className="mt-6 max-w-xl text-lg leading-relaxed text-steel-200">
-              Food-grade PET bottles, jars, caps, and preforms for juice, water, edible oil, and
-              ghee brands. Engineered for performance, safety, and scale — with consistent quality
-              and dependable delivery.
+              Supplying food-grade PET bottles, jars, caps, closures and preforms for water,
+              beverage, edible oil, dairy and food businesses across India. Based in Pollachi,
+              Tamil Nadu — manufacturing since 2014.
             </motion.p>
 
             <motion.div variants={item} className="mt-8 flex flex-wrap gap-4">

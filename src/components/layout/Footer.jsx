@@ -1,9 +1,9 @@
-import { Mail, MapPin, Phone, ArrowUpRight, Instagram, Facebook, Linkedin, MapPinned } from 'lucide-react';
+import { Mail, MapPin, Phone, Instagram, Facebook, Linkedin, MapPinned } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import RouteLink from '../ui/RouteLink';
 import { MeshGlow, GridPattern } from '../ui/Decor';
 import logo from '../../assets/logo.png';
-import { business, whatsappUrl } from '../../config/site';
+import { business } from '../../config/site';
 
 const quickLinks = [
   { name: 'Home', href: '/' },
@@ -36,34 +36,6 @@ const Footer = () => {
     <footer className="relative overflow-hidden bg-ink-900 text-steel-100">
       <MeshGlow className="opacity-60" />
       <GridPattern className="opacity-[0.04]" />
-
-      {/* CTA strip */}
-      <div className="container-x relative">
-        <div className="-mt-px flex flex-col items-start justify-between gap-6 border-b border-white/10 py-12 md:flex-row md:items-center">
-          <div>
-            <h2 className="text-2xl font-bold text-white md:text-3xl">
-              Ready to package your product right?
-            </h2>
-            <p className="mt-2 max-w-xl text-steel-300">
-              Tell us your bottle, jar, or preform requirement - we&apos;ll get back with specs and
-              pricing.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link to="/contact" className="btn-accent">
-              Request a Quote <ArrowUpRight className="h-4 w-4" />
-            </Link>
-            <a
-              href={whatsappUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-3 font-semibold text-white transition-colors hover:bg-white/10"
-            >
-              WhatsApp Us
-            </a>
-          </div>
-        </div>
-      </div>
 
       <div className="container-x relative grid grid-cols-1 gap-10 py-14 md:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-4">

@@ -84,32 +84,32 @@ export const counts = {
 export const productCards = [
   {
     title: 'PET Bottles',
-    desc: 'High-quality bottles from 200 ml to 2 litre for water, juice, and oil applications.',
+    desc: 'Food-grade PET bottles from 200 ml to 2 litres for packaged drinking water, juice, CSD and edible oil applications.',
     icon: 'bottle',
   },
   {
     title: 'PET Jars',
-    desc: 'Wide-mouth jars ideal for dairy, pickles, powders, and food storage.',
+    desc: 'Wide-mouth PET jars for dairy products, ghee, pickles, powders and other food applications requiring jar-style packaging.',
     icon: 'jar',
   },
   {
     title: 'Caps & Closures',
-    desc: 'Tamper-proof caps engineered for secure sealing and durability.',
+    desc: 'Caps and closures designed to complement our PET bottles and jars, providing a practical sealing solution across different formats.',
     icon: 'cap',
   },
   {
     title: 'PET Preforms',
-    desc: 'Strong, consistent preforms for reliable bottle blowing — 27 specifications.',
+    desc: '27 preform specifications across water, juice, CSD, ROPP and jar categories for businesses operating their own blow moulding processes.',
     icon: 'preform',
   },
   {
-    title: 'Custom Designs',
-    desc: 'Unique bottle shapes tailored to your brand identity and filling line.',
+    title: 'Custom PET Bottles & Jars',
+    desc: 'Custom PET bottle and jar solutions from concept and mould development through production for packaging shapes beyond standard formats.',
     icon: 'custom',
   },
   {
     title: 'Printing Services',
-    desc: 'High-quality branding with screen and offset printing.',
+    desc: 'Screen and offset printing on finished bottles and jars, enabling businesses to add branding directly to their packaging.',
     icon: 'print',
   },
 ];

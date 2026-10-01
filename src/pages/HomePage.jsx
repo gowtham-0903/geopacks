@@ -35,12 +35,35 @@ const iconMap = {
 };
 
 const trustPoints = [
-  'Over 10 years of manufacturing experience',
-  'Consistent production quality across batches',
-  '100% food-grade PET materials',
-  'Industry-specific packaging solutions',
-  'Custom design and molding capability',
-  'Reliable supply and on-time delivery',
+  'Manufacturing experience since 2014',
+  'Food-grade PET resin for all products',
+  'PET bottles and jars under one supplier',
+  '27 preform specifications available',
+  'Custom PET bottle and jar capability',
+  'Reliable supply for regular production schedules',
+];
+
+const industryDetails = [
+  {
+    name: 'Packaged Drinking Water',
+    desc: 'Geopacks supplies PET bottles in standard sizes including 200 ml, 500 ml, 1 litre and 2 litre formats for packaged drinking water applications.',
+  },
+  {
+    name: 'Juice & Beverages',
+    desc: 'Geopacks supplies PET packaging for juice and beverage applications, including bottles suitable for different beverage requirements.',
+  },
+  {
+    name: 'Edible Oil',
+    desc: 'Our edible oil PET bottle range is designed for edible oil packaging requirements. Geopacks supplies PET bottles for businesses looking for suitable packaging solutions for their edible oil products.',
+  },
+  {
+    name: 'Dairy & Ghee',
+    desc: 'PET jars are an important part of our packaging range for the dairy and ghee segment. Geopacks supplies wide-mouth PET jars for ghee, dairy products and related applications.',
+  },
+  {
+    name: 'Food Products',
+    desc: 'Our PET bottles and jars are also used for food-related applications including pickles, sauces, powders and other packaged food products.',
+  },
 ];
 
 const stats = [
@@ -53,8 +76,8 @@ const stats = [
 const HomePage = () => (
   <>
     <Seo
-      title="PET Bottles, Jars, Caps & Preforms Manufacturer"
-      description="Geopacks manufactures food-grade PET bottles, jars, caps, and preforms for water, juice, edible oil, and dairy brands. Trusted PET packaging manufacturer in Tamil Nadu since 2014."
+      title="PET Bottle & Jar Manufacturer in Tamil Nadu | Geopacks"
+      description="Geopacks is a PET bottle and jar manufacturer in Tamil Nadu, supplying food-grade PET bottles, jars, caps and preforms for water, beverages, edible oil, dairy and food brands across India."
       path="/"
       schema={[organizationSchema, localBusinessSchema, faqSchema]}
     />
@@ -63,36 +86,59 @@ const HomePage = () => (
 
     {/* About preview */}
     <section className="section-shell bg-steel-50">
-      <div className="container-x grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-        <Reveal>
-          <SectionTitle subtitle="About Geopacks" title="Trusted PET packaging expertise since 2014" />
-          <p className="mb-4 leading-relaxed text-ink-800/70">
-            Since 2014, Geopacks has been a trusted manufacturer of PET bottles and preforms, serving
-            packaged drinking water, edible oil, juice, and dairy industries. With years of hands-on
-            experience, we focus on consistent quality, food safety, and production reliability.
-          </p>
-          <p className="mb-8 leading-relaxed text-ink-800/70">
-            We design packaging to meet real-world requirements — filling compatibility, leakage
-            prevention, durability, and cost efficiency.
-          </p>
-          <Link to="/about" className="btn-primary">
-            Learn More <ArrowUpRight className="h-5 w-5" />
-          </Link>
-        </Reveal>
-        <Reveal delay={0.12} className="relative">
-          <div className="overflow-hidden rounded-3xl border border-steel-100 shadow-card">
-            <img
-              src={aboutPreviewBottle}
-              alt="Transparent Geopacks PET water bottle"
-              width="640"
-              height="420"
-              loading="lazy"
-              className="aspect-[4/3] w-full object-cover"
-            />
+      <div className="container-x">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <Reveal>
+            <SectionTitle subtitle="About Geopacks" title="PET Bottle & Jar Manufacturer in Tamil Nadu" />
+            <p className="mb-4 leading-relaxed text-ink-800/70">
+              Geopacks is a PET bottle manufacturer based in Pollachi, Tamil Nadu, supplying PET
+              bottles, PET jars, caps, closures and preforms for businesses across the water, beverage,
+              edible oil, dairy and food industries. Since 2014, we have focused on consistent
+              manufacturing, dependable supply and packaging solutions suited to different product
+              requirements.
+            </p>
+            <p className="leading-relaxed text-ink-800/70">
+              Alongside our bottle range, Geopacks is also an experienced PET jar manufacturer,
+              supplying PET jars for dairy products, ghee, pickles, powders and other food applications.
+              Our product range allows businesses to source bottles, jars, preforms and closures from
+              one manufacturing partner.
+            </p>
+          </Reveal>
+          <Reveal delay={0.12} className="relative">
+            <div className="overflow-hidden rounded-3xl border border-steel-100 shadow-card">
+              <img
+                src={aboutPreviewBottle}
+                alt="Transparent Geopacks PET water bottle"
+                width="640"
+                height="420"
+                loading="lazy"
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </div>
+            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-steel-100 bg-white px-6 py-4 shadow-lift sm:block">
+              <p className="font-display text-2xl font-bold text-ink-900">Food-grade</p>
+              <p className="text-sm text-ink-800/60">100% PET material</p>
+            </div>
+          </Reveal>
+        </div>
+        <Reveal delay={0.1}>
+          <div className="mt-16 grid grid-cols-1 gap-5 md:grid-cols-2">
+            <p className="leading-relaxed text-ink-800/70">
+              Whether you require standard PET bottles and jars or are developing packaging for a
+              specific product, Geopacks supports businesses with a practical range of packaging
+              solutions. From water bottles and beverage containers to wide-mouth PET jars, we work
+              with different applications and specifications based on customer requirements.
+            </p>
+            <p className="leading-relaxed text-ink-800/70">
+              As a PET packaging manufacturer, we manage key stages of production and quality checking
+              in-house. This helps us maintain consistency across orders and provide dependable supply
+              for businesses that require regular packaging requirements.
+            </p>
           </div>
-          <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-steel-100 bg-white px-6 py-4 shadow-lift sm:block">
-            <p className="font-display text-2xl font-bold text-ink-900">Food-grade</p>
-            <p className="text-sm text-ink-800/60">100% PET material</p>
+          <div className="mt-10 flex justify-center">
+            <Link to="/about" className="btn-primary">
+              Learn More <ArrowUpRight className="h-5 w-5" />
+            </Link>
           </div>
         </Reveal>
       </div>
@@ -104,7 +150,7 @@ const HomePage = () => (
         <div className="mx-auto max-w-2xl text-center">
           <SectionTitle
             alignment="center"
-            subtitle="Comprehensive PET packaging solutions"
+            subtitle="PET packaging solutions across bottles, jars, preforms, closures and custom requirements"
             title="Our Products"
           />
         </div>
@@ -141,12 +187,13 @@ const HomePage = () => (
           <SectionTitle
             dark
             subtitle="Why Choose Geopacks"
-            title="Built on consistency, quality, and delivery trust"
+            title="Manufacturing experience, broad product range, dependable supply"
             subtitleClassName="text-accent-bright"
           />
           <p className="max-w-md text-steel-200">
-            Brands choose Geopacks because every batch ships to the same standard — the bottles fit
-            your line, seal cleanly, and arrive on schedule.
+            Choosing the right PET packaging manufacturer is an important decision for businesses
+            that depend on consistent packaging supply. Geopacks combines manufacturing experience
+            with a broad product range covering both PET bottles and jars.
           </p>
         </div>
         <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -183,22 +230,23 @@ const HomePage = () => (
     <section className="section-shell bg-white">
       <div className="container-x">
         <SectionTitle alignment="center" subtitle="Sectors we supply" title="Industries We Serve" />
-        <Stagger className="mb-6 flex flex-wrap justify-center gap-3" gap={0.06}>
-          {industries.map((industry) => (
+        <Reveal>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-ink-800/65">
+            Geopacks supplies PET bottles and jars to businesses across several industries, with
+            packaging requirements varying according to the product and application.
+          </p>
+        </Reveal>
+        <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {industryDetails.map((ind) => (
             <StaggerItem
-              key={industry}
-              className="rounded-full border border-steel-200 bg-steel-50 px-5 py-2.5 text-sm font-semibold text-ink-800 transition-colors hover:border-accent/40 hover:text-accent-dark"
+              key={ind.name}
+              className="rounded-2xl border border-steel-100 bg-steel-50 p-6"
             >
-              {industry}
+              <h3 className="mb-2 font-display text-base font-bold text-ink-900">{ind.name}</h3>
+              <p className="text-sm leading-relaxed text-ink-800/65">{ind.desc}</p>
             </StaggerItem>
           ))}
         </Stagger>
-        <Reveal delay={0.15}>
-          <p className="mx-auto max-w-2xl text-center text-ink-800/65">
-            We design packaging specifically suited for each industry&apos;s storage, safety, and
-            transportation needs.
-          </p>
-        </Reveal>
       </div>
     </section>
 
@@ -206,11 +254,20 @@ const HomePage = () => (
     <section className="section-shell bg-steel-50">
       <div className="container-x mb-10">
         <SectionTitle alignment="center" subtitle="In good company" title="Trusted by Leading Brands" />
+        <Reveal>
+          <p className="mx-auto mb-6 max-w-2xl text-center text-ink-800/65">
+            Bisleri, Apex, Sakthi, UUTRU and Presso are among the brands associated with Geopacks.
+            Our focus remains on consistent product quality, dependable supply and responsive service
+            across PET bottle, PET jar, preform and packaging requirements.
+          </p>
+        </Reveal>
       </div>
       <ClientMarquee />
     </section>
 
     <FAQ />
+
+    <CTASection />
 
     {/* Contact preview */}
     <section className="section-shell bg-white">
@@ -220,8 +277,14 @@ const HomePage = () => (
             <div className="p-8 md:p-12">
               <AccentBar className="mb-5" />
               <h2 className="font-display text-2xl font-bold text-ink-900 md:text-3xl">
-                We&apos;re ready to support your packaging needs
+                PET Bottles &amp; Jars for Your Packaging Requirements
               </h2>
+              <p className="mt-3 text-ink-800/70">
+                Whether you are looking for a PET bottle manufacturer, PET jar manufacturer, PET
+                preform supplier or a packaging partner for custom requirements, Geopacks offers a
+                range of PET packaging solutions from its manufacturing facility in Pollachi, Tamil
+                Nadu.
+              </p>
               <div className="mt-8 space-y-5">
                 <a
                   href={business.mapsShareUrl}
@@ -269,7 +332,6 @@ const HomePage = () => (
       </div>
     </section>
 
-    <CTASection />
   </>
 );
 
